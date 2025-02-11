@@ -7,7 +7,13 @@ public class WalletService : IWalletService
     private readonly List<Wallet> _wallets = new();
     public WalletService()
     {
-        _wallets = new List<Wallet>();  // 🔹 Base de datos en memoria
+        // Simulamos algunas cuentas predefinidas
+        _wallets = new List<Wallet>
+        {
+            new Wallet { Id = 1, Balance = 1000, UserDocument = "123456789", UserName = "Juan Peralta", Currency = Currency.USD },
+            new Wallet { Id = 2, Balance = 500, UserDocument = "987654321", UserName = "Maria Lopez", Currency = Currency.USD },
+            new Wallet { Id = 3, Balance = 1500, UserDocument = "123123123", UserName = "Carlos Perez", Currency = Currency.EUR }
+        };  // Base de datos en memoria
     }
     public WalletDto CreateWallet(WalletDto walletDto)
     {
