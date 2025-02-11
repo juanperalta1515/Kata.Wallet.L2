@@ -6,6 +6,8 @@ public class Transaction
     public decimal Amount { get; set; }
     public DateTime Date { get; set; }
     public string? Description { get; set; }
-    public Wallet WalletIncoming { get; set; }
-    public Wallet WalletOutgoing { get; set; }
+    public Wallet? WalletIncoming { get; set; }
+    public Wallet? WalletOutgoing { get; set; }
+    public int SourceWalletId { get; set; }
+    public int DestinationWalletId { get; set; }
 }

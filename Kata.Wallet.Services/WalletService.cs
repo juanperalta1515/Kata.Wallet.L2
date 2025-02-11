@@ -13,7 +13,7 @@ public class WalletService : IWalletService
             new Wallet { Id = 1, Balance = 1000, UserDocument = "123456789", UserName = "Juan Peralta", Currency = Currency.USD },
             new Wallet { Id = 2, Balance = 500, UserDocument = "987654321", UserName = "Maria Lopez", Currency = Currency.USD },
             new Wallet { Id = 3, Balance = 1500, UserDocument = "123123123", UserName = "Carlos Perez", Currency = Currency.EUR }
-        };  // Base de datos en memoria
+        };  // Base de datos 
     }
     public WalletDto CreateWallet(WalletDto walletDto)
     {
