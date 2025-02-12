@@ -60,14 +60,15 @@ namespace Kata.Wallet.Tests.Services
                 SourceWalletId = 1,
                 DestinationWalletId = 2
             };
-            _transactionService.CreateTransaction(transactionDto);
+            var createdTransaction = _transactionService.CreateTransaction(transactionDto);
 
             // Act
-            var transaction = _transactionService.GetTransactionById(4);
+            var transaction = _transactionService.GetTransactionById(createdTransaction.Id);
 
             // Assert
             Assert.NotNull(transaction);
             Assert.Equal(150, transaction.Amount);
         }
+
     }
 }
