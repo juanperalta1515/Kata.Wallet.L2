@@ -24,12 +24,30 @@ public class DataContext : DbContext
 
         modelBuilder.Entity<Transaction>().HasKey(x => x.Id);
         modelBuilder.Entity<Transaction>().Property(x => x.Amount).HasPrecision(16, 2).IsRequired();
-        modelBuilder.Entity<Transaction>().HasOne(x => x.WalletIncoming).WithMany(x => x.IncomingTransactions);
-        modelBuilder.Entity<Transaction>().HasOne(x => x.WalletOutgoing).WithMany(x => x.OutgoingTransactions);
+
+        modelBuilder.Entity<Transaction>()
+          .HasOne(x => x.WalletIncoming)
+          .WithMany(x => x.IncomingTransactions)
+          .HasForeignKey(x => x.WalletIncoming) // Usa la clave externa
+          .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Transaction>()
+            .HasOne(x => x.WalletOutgoing)
+            .WithMany(x => x.OutgoingTransactions)
+            .HasForeignKey(x => x.WalletOutgoing) // Usa la clave externa
+            .OnDelete(DeleteBehavior.Restrict);
+
+
         modelBuilder.Entity<Domain.Wallet>().HasKey(x => x.Id);
         modelBuilder.Entity<Domain.Wallet>().Property(x => x.Balance).HasPrecision(16, 2).IsRequired();
         modelBuilder.Entity<Domain.Wallet>().Property(x => x.Currency).IsRequired();
-        modelBuilder.Entity<Domain.Wallet>().HasMany(x => x.IncomingTransactions).WithOne(x => x.WalletIncoming);
-        modelBuilder.Entity<Domain.Wallet>().HasMany(x => x.OutgoingTransactions).WithOne(x => x.WalletOutgoing);
+
+        modelBuilder.Entity<Domain.Wallet>()
+            .HasMany(x => x.IncomingTransactions)
+            .WithOne(x => x.WalletIncoming);
+
+        modelBuilder.Entity<Domain.Wallet>()
+            .HasMany(x => x.OutgoingTransactions)
+            .WithOne(x => x.WalletOutgoing);
     }
 }
