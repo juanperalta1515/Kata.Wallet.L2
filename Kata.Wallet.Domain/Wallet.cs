@@ -1,7 +1,10 @@
-﻿namespace Kata.Wallet.Domain;
+﻿
+namespace Kata.Wallet.Domain;
 
 public class Wallet
 {
+    public Wallet() { } // Constructor sin parámetros (Obligatorio)
+
     public int Id { get; set; }
     public decimal Balance { get; set; }
     public string? UserDocument { get; set; }
