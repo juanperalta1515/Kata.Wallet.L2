@@ -11,6 +11,7 @@ builder.Services.AddDbContext<DataContext>(options =>
     options.UseInMemoryDatabase("WalletDb")); // Usa la base de datos en memoria
 IServiceCollection walletServiceRegistration = builder.Services.AddScoped<IWalletService, WalletService>();  // Registra WalletService
 builder.Services.AddScoped<ITransactionService, TransactionService>(); // Registra TransactionService
+builder.Services.AddScoped<IWalletService, WalletService>(); // Registra TransactionService
 
 builder.Services.AddControllers().AddJsonOptions(x =>
 {
